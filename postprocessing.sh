@@ -4,7 +4,6 @@
 buildMode=$1
 projectName=$2
 buildToolDir=$(cd "$(dirname "$0")";pwd)
-
 rootDir=`pwd`
 
 projectDir=${rootDir}
@@ -57,19 +56,19 @@ mkdir ${temp_dir}
 
 cp -r $localDir $temp_dir
 
+rm -rf $uploadFileNamePath
+mkdir $uploadFileNamePath
+folder_version=${android_version//./_}
+path_version=${uploadFileNamePath}/${folder_version}
+mkdir $path_version
+dlcPath=${path_version}/dlc
+mkdir ${dlcPath}
+
 if [ -n "${dlcNames}" ] || [ "${dlcNames}" = "" ]
 then
     echo "DLC not exist"
 else
     echo "DLC Begin ====================="
-
-    rm -rf $uploadFileNamePath
-    mkdir $uploadFileNamePath
-    folder_version=${android_version//./_}
-    path_version=${uploadFileNamePath}/${folder_version}
-    mkdir $path_version
-    dlcPath=${path_version}/dlc
-    mkdir ${dlcPath}
 
     cd ${temp_dir}/assets
 
