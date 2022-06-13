@@ -19,6 +19,9 @@ uploadFileNamePath=`cat ${projectDir}/gameinfo.json |jq -r '.scheme'`
 dlcNames=`cat ${projectDir}/gameinfo.json |jq -r '.dlc'`
 gameinfo=`cat ${projectDir}/gameinfo.json`
 
+echo "dlcNames:"${dlcNames}
+echo "gameinfo:"${projectDir}/gameinfo.json
+
 if [ ! -d "${buildToolDir}/node_modules" ]
 then
     cd $buildToolDir
