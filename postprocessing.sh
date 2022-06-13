@@ -67,7 +67,7 @@ mkdir $path_version
 dlcPath=${path_version}/dlc
 mkdir ${dlcPath}
 
-if [ -n "${dlcNames}" ] || [ "${dlcNames}" = "" ]
+if [ "${dlcNames}" = "" ] || [ "${dlcNames}" = null ]
 then
     echo "DLC not exist"
 else
