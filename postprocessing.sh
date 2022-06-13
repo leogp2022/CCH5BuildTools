@@ -82,7 +82,7 @@ else
     zip -q -r ${dlcZipName} ${dlcName}
     rm -rf ${dlcName}
     mv ${dlcZipName} ${buildPath}/${dlcPath}
-    echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/dlc/${dlcZipName}.zip
+    echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/dlc/${dlcZipName}
     done
 
     echo "DLC End ====================="
