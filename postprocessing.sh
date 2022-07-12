@@ -104,7 +104,9 @@ then
     echo "new upload Begin ===================================="
     echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/${gameName}.zip
     scp -r $uploadFileNamePath $serverRoot
+    echo "${gameName}.zip uploaded"
     scp -r ${dlcPath} ${serverRoot}/${uploadFileNamePath}/
+    echo "dlc uploaded"
     echo "new upload End ===================================="
 
     echo "old upload Begin ===================================="
