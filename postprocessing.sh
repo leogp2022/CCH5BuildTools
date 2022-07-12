@@ -64,7 +64,10 @@ mkdir $uploadFileNamePath
 folder_version=${android_version//./_}
 path_version=${uploadFileNamePath}/${folder_version}
 mkdir $path_version
-dlcPath=${path_version}/dlc
+
+rootBuildDir=${rootDir}/build
+mkdir ${rootBuildDir}
+dlcPath=${rootBuildDir}/dlc
 mkdir ${dlcPath}
 
 if [ "${dlcNames}" = "" ] || [ "${dlcNames}" = null ]
@@ -82,8 +85,8 @@ else
     ${buildToolDir}/7zz a ${dlcZipName} ${dlcName} > nul
     md5 ${dlcZipName}
     rm -rf ${dlcName}
-    mv ${dlcZipName} ${buildPath}/${dlcPath}
-    echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/dlc/${dlcZipName}
+    mv ${dlcZipName} ${dlcPath}
+    echo ${remoteUrl}${uploadFileNamePath}/dlc/${dlcZipName}
     done
 
     echo "DLC End ====================="
@@ -101,6 +104,7 @@ then
     echo "new upload Begin ===================================="
     echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/${gameName}.zip
     scp -r $uploadFileNamePath $serverRoot
+    scp -r ${dlcPath} ${serverRoot}/${uploadFileNamePath}/
     echo "new upload End ===================================="
 
     echo "old upload Begin ===================================="
@@ -120,7 +124,7 @@ fi
 mkdir $buildVersionPath
 
 cp $zip_file ${buildVersionPath}/${gameName}".zip"
-cp -R ${buildPath}/${dlcPath} ${buildVersionPath}
+# cp -R ${buildPath}/${dlcPath} ${buildVersionPath}
 
 buildListPath=${localBuildPath}"/buildlist.json"
 touch $buildListPath
