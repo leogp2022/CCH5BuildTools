@@ -79,7 +79,7 @@ else
     for dlcName in ${dlcNameArr[@]}
     do
     dlcZipName=${dlcName}.zip
-    zip -q -r ${dlcZipName} ${dlcName}
+    ${buildToolDir}/7zz a ${dlcZipName} ${dlcName}
     rm -rf ${dlcName}
     mv ${dlcZipName} ${buildPath}/${dlcPath}
     echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/dlc/${dlcZipName}
@@ -90,7 +90,7 @@ fi
 
 cd $buildPath
 
-zip -q -r $zip_file $temp_dir
+${buildToolDir}/7zz a $zip_file $temp_dir
 
 cp $zip_file $path_version/$gameName".zip"
 
