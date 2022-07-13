@@ -1,30 +1,31 @@
 enableTexCompress=$1
 quality=$2
+projectName=$3
 
 # echo "quality:${quality}"
 buildToolDir=$(cd "$(dirname "$0")";pwd)
 rootDir=`pwd`
 
+projectDir=${rootDir}
+if [ "$projectName" != "" ]
+then
+    projectDir=${projectDir}/${projectName}
+fi
+
+function join_by { local IFS="$1"; shift; echo "$*"; }
+
 if [ $enableTexCompress == 1 ]
 then
-    echo "texcompres time1:"$(date "+%s")
-    res=$(find -E . -regex ".*\.(pac|jpg|png)\.meta")
-    echo "texcompres time2:"$(date "+%s")
-    metaPaths=""
+    buildDir=${projectDir}/build
+    wwwDir=${buildDir}/web-mobile
+    rm -rf ${wwwDir}
+    echo "texcompress time1:"$(date "+%s")
+    res=$(find -E $projectDir -regex ".*\.(pac|jpg|png)\.meta")
     OLDIFS="$IFS"
     IFS=$'\n'
-    for element in ${res}
-    do
-        if [ "$metaPaths" == "" ]
-        then
-            metaPaths=$element
-        else
-            metaPaths=${metaPaths}","$element
-        fi
-    done
+    metaPaths=$(join_by , $res)
     IFS="$OLDIFS"
     # echo "metaPaths:${metaPaths}"
-    echo "texcompres time3:"$(date "+%s")
     node ${buildToolDir}/dealPicMeta.js ${quality} "${metaPaths}"
-    echo "texcompres time4:"$(date "+%s")
+    echo "texcompress time2:"$(date "+%s")
 fi
