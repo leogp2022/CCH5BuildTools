@@ -18,15 +18,19 @@ if (program.args.length < 2) {
 let quality = parseInt(program.args[0]);
 let metaPaths = program.args[1];
 
+// console.log("metaPaths:", metaPaths);
+
 if (isNaN(quality)) {
     console.error("error: quality is NaN.");
     exit(1);
 }
 
 let metaPathArr = metaPaths.split(",");
+// console.log("metaPathArr:", metaPathArr);
 let metaPath;
 for (let i = 0; i < metaPathArr.length; i++) {
     metaPath = metaPathArr[i];
+    // console.log("metaPath:", metaPath);
     let metaCon = fs.readFileSync(metaPath);
     let metaJson = JSON.parse(metaCon.toString());
     let platformSettings = metaJson.platformSettings;
