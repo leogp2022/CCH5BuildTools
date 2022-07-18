@@ -17,6 +17,7 @@ if (program.args.length < 2) {
 
 let quality = parseInt(program.args[0]);
 let metaPaths = program.args[1];
+let formatName = "webp";
 
 // console.log("metaPaths:", metaPaths);
 
@@ -43,19 +44,19 @@ for (let i = 0; i < metaPathArr.length; i++) {
         if (!formats) {
             formats = defaultCfg.formats = [];
         }
-        let hasWebp = false;
+        let hasFormat = false;
         let format;
         for (let i = 0; i < formats.length; i++) {
             format = formats[i];
-            if (format.name === "webp") {
-                hasWebp = true;
+            if (format.name === formatName) {
+                hasFormat = true;
                 break;
             }
         }
         let isChg = false;
-        if (!hasWebp) {
+        if (!hasFormat) {
             formats.push({
-                "name": "webp",
+                "name": formatName,
                 "quality": quality
             });
             isChg = true;

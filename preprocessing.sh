@@ -20,7 +20,7 @@ then
     wwwDir=${buildDir}/web-mobile
     rm -rf ${wwwDir}
     echo "texcompress time1:"$(date "+%s")
-    res=$(find -E $projectDir -regex ".*\.(pac|jpg|png)\.meta")
+    res=$(find -E $projectDir -regex ".*\.(pac|png)\.meta")
     OLDIFS="$IFS"
     IFS=$'\n'
     metaPaths=$(join_by , $res)
