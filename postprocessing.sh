@@ -99,20 +99,17 @@ md5 ${zip_file}
 
 cp $zip_file $path_version/$gameName".zip"
 
-if [ $buildMode == 0 ]
-then
-    echo "new upload Begin ===================================="
-    echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/${gameName}.zip
-    scp -r $uploadFileNamePath $serverRoot
-    echo "${gameName}.zip uploaded"
-    scp -r ${dlcPath} ${serverRoot}/${uploadFileNamePath}/
-    echo "dlc uploaded"
-    echo "new upload End ===================================="
+echo "new upload Begin ===================================="
+echo ${remoteUrl}${uploadFileNamePath}/${folder_version}/${gameName}.zip
+scp -r $uploadFileNamePath $serverRoot
+echo "${gameName}.zip uploaded"
+scp -r ${dlcPath} ${serverRoot}/${uploadFileNamePath}/
+echo "dlc uploaded"
+echo "new upload End ===================================="
 
-    echo "old upload Begin ===================================="
-    scp $zip_file $serverPath"/"$zip_file_fullName
-    echo "old upload End ===================================="
-fi
+echo "old upload Begin ===================================="
+scp $zip_file $serverPath"/"$zip_file_fullName
+echo "old upload End ===================================="
 
 localBuildPath=${projectDir}/build
 buildVersionPath=$localBuildPath"/"$android_version
